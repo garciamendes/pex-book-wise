@@ -1,6 +1,6 @@
 # 📚 BookWise
 
-O **BookWise** é uma aplicação web que integra **Django** no backend e **React.js** no frontend. Seu objetivo é gerenciar leituras, registrar livros, acompanhar progresso de leitura e compartilhar experiências literárias.
+O **BookWise** é uma aplicação web que integra **JavaSpringBoot** no backend e **React.js** no frontend. Seu objetivo é gerenciar leituras, registrar livros, acompanhar progresso de leitura e compartilhar experiências literárias.
 
 ---
 
@@ -16,8 +16,8 @@ O **BookWise** é uma aplicação web que integra **Django** no backend e **Reac
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- **Django**: Framework robusto para construção do backend.
-- **Django REST Framework**: API poderosa e flexível.
+- **Java**: Framework robusto para construção do backend.
+- **Java spring boot**: API poderosa e flexível.
 
 ### Frontend
 - **React**: Framework React para renderização do frontend.
