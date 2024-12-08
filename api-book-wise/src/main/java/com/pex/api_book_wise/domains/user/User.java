@@ -20,6 +20,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapKeyJoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -68,6 +69,10 @@ public class User {
   @ManyToOne
   @JoinColumn(name = "most_read_category_id")
   private Category most_read_category;
+
+  @OneToOne
+  @JoinColumn(name = "current_reading_book_id")
+  private Book currentReadingBook;
 
   @Column(name = "created_at", updatable = false)
   private LocalDateTime createdAt;
