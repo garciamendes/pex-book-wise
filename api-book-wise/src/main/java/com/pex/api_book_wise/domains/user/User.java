@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.Locale.Category;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.pex.api_book_wise.domains.book.Book;
 
 import jakarta.persistence.CollectionTable;

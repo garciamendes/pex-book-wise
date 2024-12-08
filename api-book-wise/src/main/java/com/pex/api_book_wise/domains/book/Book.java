@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.pex.api_book_wise.domains.category.Category;
 import com.pex.api_book_wise.domains.user.User;
 
