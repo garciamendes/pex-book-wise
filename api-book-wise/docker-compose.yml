@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: api-book-wise
+      POSTGRES_PASSWORD: api-book-wise
+      POSTGRES_DB: api-book-wise
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/api-book-wise
+      SPRING_DATASOURCE_USERNAME: api-book-wise
+      SPRING_DATASOURCE_PASSWORD: api-book-wise
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

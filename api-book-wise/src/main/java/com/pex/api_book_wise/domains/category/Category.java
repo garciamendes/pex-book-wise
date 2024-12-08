@@ -34,7 +34,11 @@ public class Category {
   private String title;
 
   @ManyToMany
-  @JoinTable(name = "book_categories", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+  @JoinTable(
+    name = "book_categories",
+    joinColumns = @JoinColumn(name = "category_id"),
+    inverseJoinColumns = @JoinColumn(name = "book_id")
+  )
   private List<Book> books;
 
   @Column(name = "created_at", updatable = false)

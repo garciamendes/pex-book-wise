@@ -2,7 +2,7 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 CREATE TABLE
   book_rating (
-    id UUID get_random_uuid() PRIMARY KEY,
+    id UUID gen_random_uuid() PRIMARY KEY,
     user_id UUID NOT NULL,
     book_id UUID NOT NULL,
     rating INTEGER CHECK (

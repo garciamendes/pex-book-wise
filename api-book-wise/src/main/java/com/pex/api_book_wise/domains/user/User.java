@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.Locale.Category;
 
 import com.pex.api_book_wise.domains.book.Book;
 
+import com.pex.api_book_wise.domains.category.Category;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -49,11 +49,18 @@ public class User {
   private Integer total_author_readed;
 
   @ManyToMany
-  @JoinTable(name = "user_books", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+  @JoinTable(
+    name = "user_books",
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "book_id")
+  )
   private List<Book> books;
 
   @ElementCollection
-  @CollectionTable(name = "user_category_counts", joinColumns = @JoinColumn(name = "user_id"))
+  @CollectionTable(
+    name = "user_category_counts",
+    joinColumns = @JoinColumn(name = "user_id")
+  )
   @MapKeyJoinColumn(name = "category_id")
   @Column(name = "read_count")
   private Map<Category, Integer> categoryReadCounts = new HashMap<>();
