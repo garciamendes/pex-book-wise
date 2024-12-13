@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-242.24807.4">
+    <data-source name="api-book-wise@localhost" uuid="cd00d70e-ada5-4ff1-a735-6f2a9a4cdaca">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <user-name>api-book-wise</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>
