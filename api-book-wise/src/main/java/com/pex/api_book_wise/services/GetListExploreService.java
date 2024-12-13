@@ -23,7 +23,7 @@ public class GetListExploreService {
         .categories(bookInDto.getCategories())
         .build();
 
-    PageRequest pageRequest = PageRequest.of(bookInDto.getPage(), 5);
+    PageRequest pageRequest = PageRequest.of(bookInDto.getPage(), 12);
     Specification<Book> specification = BookSpecification.getSpecification(filters);
     Page<Book> books = this.bookRepository.findAll(specification, pageRequest);
 
