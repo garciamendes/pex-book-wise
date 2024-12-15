@@ -15,7 +15,6 @@ public class BookSpecification {
     return (root, query, criteriaBuilder) -> {
 
       List<Predicate> predicates = new ArrayList<>();
-      System.out.println("FILTERS " + filterDto);
 
       if (filterDto.getSearch() != null) {
         String searchPattern = "%" + filterDto.getSearch().toLowerCase() + "%";

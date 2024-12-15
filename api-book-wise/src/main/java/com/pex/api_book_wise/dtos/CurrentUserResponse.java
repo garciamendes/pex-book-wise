@@ -10,5 +10,5 @@ import lombok.Data;
 public class CurrentUserResponse {
   private UUID id;
   private String email;
-  private UserDto user;
+  private CurrentUserDto user;
 }
