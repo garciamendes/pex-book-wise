@@ -1,9 +1,8 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
     image: postgres:latest
-    restart: always
     environment:
       POSTGRES_USER: api-book-wise
       POSTGRES_PASSWORD: api-book-wise

@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Table(name = "book_rating")
+@Table(name = "books_rating")
 @Entity
 @Setter
 @Getter

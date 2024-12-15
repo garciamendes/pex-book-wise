@@ -1,6 +1,6 @@
 -- Insere categorias se não existirem
 INSERT INTO
-  category (id, title, created_at)
+  categories (id, title, created_at)
 VALUES
   (
     '77d5c351-19d5-4e02-918e-09f5c6bbb2d8',
@@ -150,7 +150,7 @@ VALUES
 
 -- Insere livros se não existirem
 INSERT INTO
-  book (
+  books (
     id,
     title,
     description,
