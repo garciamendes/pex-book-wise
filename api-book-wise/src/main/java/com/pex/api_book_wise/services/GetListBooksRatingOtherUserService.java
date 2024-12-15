@@ -7,44 +7,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.pex.api_book_wise.domains.auth.Auth;
-import com.pex.api_book_wise.domains.book.Book;
+import com.pex.api_book_wise.domains.book_rating.BookRating;
 import com.pex.api_book_wise.domains.user.User;
-import com.pex.api_book_wise.dtos.BookDto;
 import com.pex.api_book_wise.dtos.BookFiltersDTO;
 import com.pex.api_book_wise.dtos.BookInDTO;
-import com.pex.api_book_wise.mappers.BookMapper;
-import com.pex.api_book_wise.repositories.BookRepository;
+import com.pex.api_book_wise.dtos.BookRatingDto;
+import com.pex.api_book_wise.mappers.BookRatingMapper;
+import com.pex.api_book_wise.repositories.BookRatingRepository;
 import com.pex.api_book_wise.repositories.UserRepository;
-import com.pex.api_book_wise.repositories.specification.BookSpecification;
+import com.pex.api_book_wise.repositories.specification.BookRatingSpecification;
 
 @Service
 public class GetListBooksRatingOtherUserService {
   @Autowired
-  private BookRepository bookRepository;
+  private BookRatingRepository bookRatingRepository;
 
   @Autowired
   private UserRepository userRepository;
 
-  public Page<BookDto> execute(UUID id, BookInDTO bookInDto) {
+  public Page<BookRatingDto> execute(UUID id, BookInDTO bookInDto) {
     Optional<User> user = this.userRepository.findById(id);
 
     BookFiltersDTO filters = BookFiltersDTO.builder()
         .search(bookInDto.getSearch())
         .build();
 
-    Specification<Book> specification = Specification
-        .where(BookSpecification.getSpecification(filters))
-        .and((root, query, criteriaBuilder) -> criteriaBuilder.isMember(user, root.get("users")));
+    Specification<BookRating> specification = Specification
+        .where(BookRatingSpecification.getSpecification(filters))
+        .and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("user"), user));
 
     PageRequest pageRequest = PageRequest.of(bookInDto.getPage(), 12);
-    Page<Book> books = this.bookRepository.findAll(specification, pageRequest);
+    Page<BookRating> booksRating = this.bookRatingRepository.findAll(specification, pageRequest);
 
-    BookMapper bookMapper = new BookMapper();
-    return books.map(bookMapper::convertBookToDto);
+    BookRatingMapper bookRatingMapper = new BookRatingMapper();
+    return booksRating.map(bookRatingMapper::convertBookRatingToDto);
   }
 }
