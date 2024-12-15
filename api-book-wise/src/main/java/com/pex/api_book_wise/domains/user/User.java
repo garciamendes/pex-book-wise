@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.pex.api_book_wise.domains.auth.Auth;
 import com.pex.api_book_wise.domains.book.Book;
 
 import com.pex.api_book_wise.domains.category.Category;
@@ -13,6 +15,7 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -51,7 +54,7 @@ public class User {
 
   private Integer total_author_readed = 0;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "user_books", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
   private List<Book> books;
 
@@ -61,13 +64,17 @@ public class User {
   @Column(name = "read_count")
   private Map<Category, Integer> categoryReadCounts = new HashMap<>();
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "most_read_category_id")
   private Category most_read_category;
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "current_reading_book_id")
   private Book currentReadingBook;
+
+  @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+  @JsonBackReference
+  private Auth auth;
 
   @Column(name = "created_at", updatable = false)
   private LocalDateTime createdAt;

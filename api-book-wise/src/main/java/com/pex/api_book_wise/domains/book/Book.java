@@ -9,6 +9,7 @@ import com.pex.api_book_wise.domains.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -40,10 +41,10 @@ public class Book {
 
   private Integer total_pages;
 
-  @ManyToMany(mappedBy = "books")
+  @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
   private List<User> users;
 
-  @ManyToMany(mappedBy = "books")
+  @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
   private List<Category> categories;
 
   @Column(name = "created_at", updatable = false)

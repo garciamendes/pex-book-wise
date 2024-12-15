@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.pex.api_book_wise.domains.book.Book;
 import com.pex.api_book_wise.domains.user.User;
 
@@ -42,8 +43,9 @@ public class Auth implements UserDetails {
   @Column(nullable = false)
   private String password;
 
-  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id")
+  @JsonManagedReference
   private User user;
 
   @Column(name = "created_at", updatable = false)
