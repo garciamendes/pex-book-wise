@@ -11,7 +11,7 @@ import com.pex.api_book_wise.services.GetCurrentReadingBookService;
 
 @RestController()
 @RequestMapping("/api/books")
-public class getCurrentReadingBookController {
+public class GetCurrentReadingBookController {
   @Autowired
   private GetCurrentReadingBookService getCurrentReadingBookService;
 
