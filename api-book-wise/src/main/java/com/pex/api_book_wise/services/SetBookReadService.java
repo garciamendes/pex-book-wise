@@ -28,7 +28,7 @@ public class SetBookReadService {
     User user = authUser.getUser();
 
     if (user.getCurrentReadingBook() != null) {
-      throw new RuntimeException("Has book reading");
+      throw new RuntimeException("There is already a book reading");
     }
 
     Optional<Book> book = this.bookRepository.findById(book_id);

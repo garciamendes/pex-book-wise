@@ -27,7 +27,7 @@ public class SetBookReadController {
 
       return ResponseEntity.ok().build();
     } catch (Exception e) {
-      return ResponseEntity.badRequest().body(new ResponseMessageDTO("Has book reading"));
+      return ResponseEntity.badRequest().body(new ResponseMessageDTO("There is already a book reading"));
     }
   }
 }
