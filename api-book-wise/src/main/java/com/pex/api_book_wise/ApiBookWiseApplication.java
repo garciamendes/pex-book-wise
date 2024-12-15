@@ -12,6 +12,7 @@ public class ApiBookWiseApplication {
 		Dotenv dotenv = Dotenv.load();
 
 		System.setProperty("CLOUDINARY_URL", dotenv.get("CLOUDINARY_URL"));
+		System.setProperty("SECRET_TOKEN", dotenv.get("SECRET_TOKEN"));
 
 		SpringApplication.run(ApiBookWiseApplication.class, args);
 	}

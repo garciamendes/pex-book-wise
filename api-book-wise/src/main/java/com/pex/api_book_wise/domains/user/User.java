@@ -28,7 +28,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Table(name = "profile")
+@Table(name = "users")
 @Entity
 @Setter
 @Getter
@@ -39,29 +39,24 @@ public class User {
   @GeneratedValue
   private UUID id;
 
+  @Column(nullable = true)
   private String name;
 
+  @Column(nullable = true)
   private String avatar;
 
-  private Integer total_pages_readed;
+  private Integer total_pages_readed = 0;
 
-  private Integer total_number_books_evaluated;
+  private Integer total_number_books_evaluated = 0;
 
-  private Integer total_author_readed;
+  private Integer total_author_readed = 0;
 
   @ManyToMany
-  @JoinTable(
-    name = "user_books",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "book_id")
-  )
+  @JoinTable(name = "user_books", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
   private List<Book> books;
 
   @ElementCollection
-  @CollectionTable(
-    name = "user_category_counts",
-    joinColumns = @JoinColumn(name = "user_id")
-  )
+  @CollectionTable(name = "user_category_counts", joinColumns = @JoinColumn(name = "user_id"))
   @MapKeyJoinColumn(name = "category_id")
   @Column(name = "read_count")
   private Map<Category, Integer> categoryReadCounts = new HashMap<>();
