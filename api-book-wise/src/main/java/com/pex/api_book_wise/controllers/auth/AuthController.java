@@ -38,7 +38,7 @@ public class AuthController {
   private TokenService tokenService;
 
   @PostMapping("/login")
-  public ResponseEntity login(@RequestBody @Validated AuthDTO authDto) {
+  public ResponseEntity<ResponseLoginDTO> login(@RequestBody @Validated AuthDTO authDto) {
     var usernamePassword = new UsernamePasswordAuthenticationToken(authDto.email(), authDto.password());
     var auth = this.authManager.authenticate(usernamePassword);
 
@@ -48,7 +48,7 @@ public class AuthController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity register(@RequestBody @Validated RegisterDTO registerDTO) {
+  public ResponseEntity<ResponseMessageDTO> register(@RequestBody @Validated RegisterDTO registerDTO) {
     if (this.authRepository.findByEmail(registerDTO.email()) != null) {
       return ResponseEntity.badRequest().body(new ResponseMessageDTO("Email already exists"));
     }

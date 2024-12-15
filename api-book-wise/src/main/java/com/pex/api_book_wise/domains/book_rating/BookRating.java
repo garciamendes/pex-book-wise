@@ -22,11 +22,11 @@ public class BookRating {
   @GeneratedValue
   private UUID id;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "book_id", nullable = false)
   private Book book;
 
