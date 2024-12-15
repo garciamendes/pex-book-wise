@@ -58,7 +58,7 @@ public class User {
   @JoinTable(name = "user_books", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
   private List<Book> books;
 
-  @ElementCollection
+  @ElementCollection(fetch = FetchType.EAGER)
   @CollectionTable(name = "user_category_counts", joinColumns = @JoinColumn(name = "user_id"))
   @MapKeyJoinColumn(name = "category_id")
   @Column(name = "read_count")
