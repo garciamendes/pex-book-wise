@@ -33,6 +33,10 @@ public class SetBookReadService {
 
     Optional<Book> book = this.bookRepository.findById(book_id);
 
+    if (user.getBooks().stream().anyMatch(b -> b.getId().equals(book.get().getId()))) {
+      throw new RuntimeException("This book has already been read");
+    }
+
     user.setCurrentReadingBook(book.get());
     this.userRepository.save(user);
   }
