@@ -63,7 +63,7 @@ public class AuthController {
   }
 
   @Transactional
-  private void createUserAndAuth(String email, String password) {
+  protected void createUserAndAuth(String email, String password) {
     User user = new User();
     user.setName(email);
     this.userRepository.save(user);
