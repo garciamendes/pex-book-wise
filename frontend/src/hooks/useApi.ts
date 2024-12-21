@@ -6,10 +6,13 @@ export const useApi = () => {
   const { getItem } = useLocalStorage()
 
   const instance = axios.create({
-    baseURL: import.meta.env.BASE_URL,
+    baseURL: import.meta.env.VITE_BASE_URL_API,
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 
-  const token = getItem('auth-token')
+  const token = getItem(import.meta.env.VITE_KEY_PREFIX_TOKEN)
   useEffect(() => {
     instance.defaults.headers.common['Authorization'] = String(token);
 

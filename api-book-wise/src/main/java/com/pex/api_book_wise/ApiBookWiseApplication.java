@@ -13,6 +13,7 @@ public class ApiBookWiseApplication {
 
 		System.setProperty("CLOUDINARY_URL", dotenv.get("CLOUDINARY_URL"));
 		System.setProperty("SECRET_TOKEN", dotenv.get("SECRET_TOKEN"));
+		System.setProperty("CORS_ALLOW", dotenv.get("CORS_ALLOW"));
 
 		SpringApplication.run(ApiBookWiseApplication.class, args);
 	}

@@ -14,10 +14,10 @@ public class CategoryMapper {
     }
 
     return categories.stream()
-        .map(category -> new CategoryDto(
-            category.getId(),
-            category.getTitle()))
-        .collect(Collectors.toList());
+            .map(category -> new CategoryDto(
+                    category.getId(),
+                    category.getTitle()))
+            .collect(Collectors.toList());
   }
 
   public CategoryDto convertCategoryToDto(Category category) {
