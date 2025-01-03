@@ -26,10 +26,6 @@ import lombok.Setter;
 
 @Table(name = "auth")
 @Entity
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Auth implements UserDetails {
     @Id
     @GeneratedValue
@@ -48,6 +44,10 @@ public class Auth implements UserDetails {
 
     @Column(name = "createdAt", updatable = false)
     private LocalDateTime createdAt;
+
+    public Auth() {
+
+    }
 
     @PrePersist
     protected void onCreate() {
@@ -87,5 +87,41 @@ public class Auth implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Auth(UUID id, String email, String password, Account account, LocalDateTime createdAt) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.account = account;
+        this.createdAt = createdAt;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }

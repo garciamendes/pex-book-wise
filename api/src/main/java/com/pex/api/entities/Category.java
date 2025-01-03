@@ -13,10 +13,6 @@ import lombok.Setter;
 
 @Table(name = "categories")
 @Entity
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Category {
     @Id
     @GeneratedValue
@@ -51,5 +47,53 @@ public class Category {
         String alphanumeric = withoutAccents.replaceAll("[^a-zA-Z0-9\\s]", "");
 
         this.slug = alphanumeric.trim().toLowerCase().replaceAll("\\s+", "-");
+    }
+
+    public Category(UUID id, String title, String slug, List<Book> books, LocalDateTime createdAt) {
+        this.id = id;
+        this.title = title;
+        this.slug = slug;
+        this.books = books;
+        this.createdAt = createdAt;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

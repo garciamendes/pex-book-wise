@@ -30,10 +30,6 @@ import lombok.Setter;
 
 @Table(name = "accounts")
 @Entity
-@Setter
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Account {
     @Id
     @GeneratedValue
@@ -76,8 +72,123 @@ public class Account {
     @Column(name = "createdAt", updatable = false)
     private LocalDateTime createdAt;
 
+    public Account() {
+
+    }
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+    }
+
+    public Account(UUID id, String name, String avatar, Integer totalPagesReaded, Integer totalNumberBooksEvaluated, Integer totalAuthorReaded, List<Book> books, Map<Category, Integer> categoryReadCounts, Category mostReadCategory, Book currentReadingBook, Auth auth, LocalDateTime createdAt) {
+        this.id = id;
+        this.name = name;
+        this.avatar = avatar;
+        this.totalPagesReaded = totalPagesReaded;
+        this.totalNumberBooksEvaluated = totalNumberBooksEvaluated;
+        this.totalAuthorReaded = totalAuthorReaded;
+        this.books = books;
+        this.categoryReadCounts = categoryReadCounts;
+        this.mostReadCategory = mostReadCategory;
+        this.currentReadingBook = currentReadingBook;
+        this.auth = auth;
+        this.createdAt = createdAt;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Integer getTotalPagesReaded() {
+        return totalPagesReaded;
+    }
+
+    public void setTotalPagesReaded(Integer totalPagesReaded) {
+        this.totalPagesReaded = totalPagesReaded;
+    }
+
+    public Integer getTotalNumberBooksEvaluated() {
+        return totalNumberBooksEvaluated;
+    }
+
+    public void setTotalNumberBooksEvaluated(Integer totalNumberBooksEvaluated) {
+        this.totalNumberBooksEvaluated = totalNumberBooksEvaluated;
+    }
+
+    public Integer getTotalAuthorReaded() {
+        return totalAuthorReaded;
+    }
+
+    public void setTotalAuthorReaded(Integer totalAuthorReaded) {
+        this.totalAuthorReaded = totalAuthorReaded;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public Map<Category, Integer> getCategoryReadCounts() {
+        return categoryReadCounts;
+    }
+
+    public void setCategoryReadCounts(Map<Category, Integer> categoryReadCounts) {
+        this.categoryReadCounts = categoryReadCounts;
+    }
+
+    public Category getMostReadCategory() {
+        return mostReadCategory;
+    }
+
+    public void setMostReadCategory(Category mostReadCategory) {
+        this.mostReadCategory = mostReadCategory;
+    }
+
+    public Book getCurrentReadingBook() {
+        return currentReadingBook;
+    }
+
+    public void setCurrentReadingBook(Book currentReadingBook) {
+        this.currentReadingBook = currentReadingBook;
+    }
+
+    public Auth getAuth() {
+        return auth;
+    }
+
+    public void setAuth(Auth auth) {
+        this.auth = auth;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
