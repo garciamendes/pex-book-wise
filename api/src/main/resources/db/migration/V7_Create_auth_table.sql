@@ -1,0 +1,10 @@
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+CREATE TABLE auth (
+    id UUID DEFAULT gen_random_uuid () PRIMARY KEY,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    accountId TEXT UNIQUE,
+    CONSTRAINT fk_account FOREIGN KEY (accountId) REFERENCES account(id) ON DELETE CASCADE
+);
