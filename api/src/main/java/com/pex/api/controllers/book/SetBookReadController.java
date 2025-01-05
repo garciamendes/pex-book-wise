@@ -15,10 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SetBookReadController {
     private final SetBookReadService setBookReadService;
 
-    public SetBookReadController(SetBookReadService setBookReadService) {
-        this.setBookReadService = setBookReadService;
-    }
-
     @PostMapping("/read")
     public ResponseEntity setBookAsRead(@RequestBody @Validated SetBookReadDto data) {
         try {

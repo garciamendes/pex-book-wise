@@ -11,11 +11,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetOtherUserService {
-    private final UserRepository userRepository;
-
-    public GetOtherUserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     public CurrentUserDto execute(UUID id) {
         Optional<Account> user = this.userRepository.findById(id);

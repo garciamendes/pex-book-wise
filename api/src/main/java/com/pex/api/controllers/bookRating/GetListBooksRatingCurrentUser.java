@@ -4,6 +4,7 @@ import com.pex.api.dtos.BookInDTO;
 import com.pex.api.dtos.BookRatingDto;
 import com.pex.api.dtos.PaginationResponse;
 import com.pex.api.services.GetListBooksRatingCurrentUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController()
 @RequestMapping("/api/books-rating")
 public class GetListBooksRatingCurrentUser {
-    private final GetListBooksRatingCurrentUserService getListBooksRatingCurrentUserService;
-
-    public GetListBooksRatingCurrentUser(GetListBooksRatingCurrentUserService getListBooksRatingCurrentUserService) {
-        this.getListBooksRatingCurrentUserService = getListBooksRatingCurrentUserService;
-    }
+    @Autowired
+    private GetListBooksRatingCurrentUserService getListBooksRatingCurrentUserService;
 
     @GetMapping("/list-current-user")
     public PaginationResponse<BookRatingDto> getCurrentReadingBook(

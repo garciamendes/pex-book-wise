@@ -15,13 +15,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SetBookReadService {
-    private final BookRepository bookRepository;
-    private final UserRepository userRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
-    public SetBookReadService(BookRepository bookRepository, UserRepository userRepository) {
-        this.bookRepository = bookRepository;
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     public void execute(UUID book_id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController()
 @RequestMapping("/api/books")
 public class GetListExploreController {
-    private final GetListExploreService getListExploreService;
-
-    public GetListExploreController(GetListExploreService getListExploreService) {
-        this.getListExploreService = getListExploreService;
-    }
+    @Autowired
+    private GetListExploreService getListExploreService;
 
     @GetMapping("/explore")
     public PaginationResponse<Book> getBooksExplore(

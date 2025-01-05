@@ -12,6 +12,7 @@ import com.pex.api.mappers.BookRatingMapper;
 import com.pex.api.repositories.BookRatingRepository;
 import com.pex.api.repositories.UserRepository;
 import com.pex.api.repositories.specification.BookRatingSpecification;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -19,13 +20,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetListBooksRatingOtherUserService {
-    private final BookRatingRepository bookRatingRepository;
-    private final UserRepository userRepository;
+    @Autowired
+    private BookRatingRepository bookRatingRepository;
 
-    public GetListBooksRatingOtherUserService(BookRatingRepository bookRatingRepository, UserRepository userRepository) {
-        this.bookRatingRepository = bookRatingRepository;
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     public Page<BookRatingDto> execute(UUID id, BookInDTO bookInDto) {
         Optional<Account> user = this.userRepository.findById(id);

@@ -13,11 +13,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetListExploreService {
-    private final BookRepository bookRepository;
-
-    public GetListExploreService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    @Autowired
+    private BookRepository bookRepository;
 
     public Page<Book> getList(BookInDTO bookInDto) {
         BookFiltersDTO filters = new BookFiltersDTO.Builder()

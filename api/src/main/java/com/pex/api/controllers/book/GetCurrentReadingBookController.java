@@ -11,11 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController()
 @RequestMapping("/api/books")
 public class GetCurrentReadingBookController {
-    private final GetCurrentReadingBookService getCurrentReadingBookService;
-
-    public GetCurrentReadingBookController(GetCurrentReadingBookService getCurrentReadingBookService) {
-        this.getCurrentReadingBookService = getCurrentReadingBookService;
-    }
+    @Autowired
+    private GetCurrentReadingBookService getCurrentReadingBookService;
 
     @GetMapping("/current-reading-book")
     public ResponseEntity<BookDto> getCurrentReadingBook() {

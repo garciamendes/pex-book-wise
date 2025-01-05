@@ -9,6 +9,7 @@ import com.pex.api.entities.Book;
 import com.pex.api.mappers.BookMapper;
 import com.pex.api.repositories.BookRepository;
 import com.pex.api.repositories.specification.BookSpecification;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,11 +19,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GetListBooksCurrentUserService {
-    private final BookRepository bookRepository;
-
-    public GetListBooksCurrentUserService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
+    @Autowired
+    private BookRepository bookRepository;
 
     public Page<BookDto> execute(BookInDTO bookInDto) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
