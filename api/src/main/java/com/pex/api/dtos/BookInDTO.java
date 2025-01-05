@@ -18,6 +18,8 @@ public class BookInDTO {
         this.page = page;
     }
 
+    public BookInDTO() {}
+
     public String getSearch() {
         return search;
     }

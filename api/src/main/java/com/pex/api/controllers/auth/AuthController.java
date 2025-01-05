@@ -8,6 +8,7 @@ import com.pex.api.entities.Auth;
 import com.pex.api.repositories.AuthRepository;
 import com.pex.api.repositories.UserRepository;
 import com.pex.api.services.TokenService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,23 +23,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    private final AuthenticationManager authManager;
-    private final UserRepository userRepository;
-    private final AuthRepository authRepository;
-    private final TokenService tokenService;
+    @Autowired
+    private AuthenticationManager authManager;
 
-    public AuthController(AuthenticationManager authManager, UserRepository userRepository, AuthRepository authRepository, TokenService tokenService) {
-        this.authManager = authManager;
-        this.userRepository = userRepository;
-        this.authRepository = authRepository;
-        this.tokenService = tokenService;
-    }
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private AuthRepository authRepository;
+
+    @Autowired
+    private TokenService tokenService;
 
     @PostMapping("/login")
     public ResponseEntity<ResponseLoginDTO> login(@RequestBody @Validated AuthDTO authDto) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(authDto.email(), authDto.password());
         var auth = this.authManager.authenticate(usernamePassword);
-
         var token = this.tokenService.generateToken((Auth) auth.getPrincipal());
 
         return ResponseEntity.ok(new ResponseLoginDTO(token));
